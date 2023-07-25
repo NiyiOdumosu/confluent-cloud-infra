@@ -32,12 +32,12 @@ jobs:
           echo "confluent_api_key = \"${{ secrets.CONFLUENT_CLOUD_API_KEY }}\" " >> non-prod.tfvars
           echo "confluent_api_secret = \"${{ secrets.CONFLUENT_CLOUD_API_SECRET }}\" " >> non-prod.tfvars
           echo >> non-prod.tfvars
-          cat non-prod.tfvars
+          terraform --version
           terraform init
           terraform plan -var-file=non-prod.tfvars
 
       - name: terraform plan
-        uses: dflook/terraform-plan@v1
+        uses: dflook/terraform-plan@v2
         with:
           path: non-prod
           var_file: non-prod.tfvars
