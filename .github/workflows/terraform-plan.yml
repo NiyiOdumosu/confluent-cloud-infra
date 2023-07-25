@@ -37,7 +37,7 @@ jobs:
           terraform plan -var-file=non-prod.tfvars
 
       - name: terraform plan
-        uses: dflook/terraform-plan@v2
+        uses: dflook/terraform-plan@v1
         with:
           path: non-prod
           var_file: non-prod.tfvars
