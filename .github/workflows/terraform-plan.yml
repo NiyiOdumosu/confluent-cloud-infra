@@ -35,4 +35,4 @@ jobs:
         uses: dflook/terraform-plan@v1
         with:
           path: non-prod
-          var_file: non-prod.tfvars
+          var_file: non-prod/non-prod.tfvars
