@@ -9,6 +9,12 @@ terraform {
       version = "~> 4.0"
     }
   }
+
+  backend "s3" {
+    bucket         	   = "niyi-tf-backend-non-prod"
+    key                = "state/terraform.tfstate"
+    region         	   = "us-east-1"
+  }
 }
 
 provider "confluent" {
@@ -20,3 +26,4 @@ provider "confluent" {
 provider "aws" {
   region = "us-east-1"
 }
+
