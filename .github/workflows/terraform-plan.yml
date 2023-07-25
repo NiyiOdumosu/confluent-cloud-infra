@@ -23,14 +23,13 @@ jobs:
 
       - name: Add CCloud Creds
         run: |
-        export TF_VAR_confluent_api_key=${{ secrets.CONFLUENT_CLOUD_API_KEY }}
-        export TF_VAR_confluent_api_secret=${{ secrets.CONFLUENT_CLOUD_API_SECRET }}
-
+          export TF_VAR_confluent_api_key=${{ secrets.CONFLUENT_CLOUD_API_KEY }}
+          export TF_VAR_confluent_api_secret=${{ secrets.CONFLUENT_CLOUD_API_SECRET }}
 
       - name: terraform init & plan
         run: |
-        terraform init
-        terraform plan -var-file=non-prod.tfvars
+          terraform init
+          terraform plan -var-file=non-prod.tfvars
 
       - name: terraform plan
         uses: dflook/terraform-plan@v1
