@@ -15,8 +15,5 @@ jobs:
 
       - name: terraform plan
         uses: dflook/terraform-plan@v1
-#        with:
-#          var_file: |
-#            common.tfvars
-#            prod.tfvars
-#          path: path/to/terraform/config
+        with:
+          path: non-prod/
