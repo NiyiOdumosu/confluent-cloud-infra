@@ -1,0 +1,3 @@
+.idea/
+non-prod/terraform.tfvars
+non-prod/.terraform/
