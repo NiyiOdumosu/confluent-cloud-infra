@@ -1,0 +1,22 @@
+name: "Terraform Plan"
+
+on:
+  pull_request:
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    name: Create a plan for the terraform configuration
+    env:
+      GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: terraform plan
+        uses: dflook/terraform-plan@v1
+#        with:
+#          var_file: |
+#            common.tfvars
+#            prod.tfvars
+#          path: path/to/terraform/config
