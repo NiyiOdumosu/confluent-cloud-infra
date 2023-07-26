@@ -1,7 +1,8 @@
 name: "Terraform Plan"
 
 on:
-  pull_request:
+  push:
+    branches: [main]
 
 jobs:
   plan:
@@ -27,8 +28,8 @@ jobs:
           echo "confluent_api_secret = \"${{ secrets.CONFLUENT_CLOUD_API_SECRET }}\" " >> non-prod.tfvars
           echo >> non-prod.tfvars
 
-      - name: terraform plan
-        uses: dflook/terraform-plan@v1
+      - name: terraform apply
+        uses: dflook/terraform-apply@v1
         with:
           path: non-prod
           var_file: non-prod/non-prod.tfvars

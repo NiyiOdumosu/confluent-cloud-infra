@@ -134,4 +134,3 @@ resource "confluent_api_key" "app-manager-kafka-api-key" {
     }
   }
 }
-

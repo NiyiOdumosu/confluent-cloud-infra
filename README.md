@@ -32,7 +32,7 @@ You can create resources such as Kafka clusters, schema registry clusters, Kafka
 To provision resources using the Confluent Terraform Provider, follow these steps:
 
 Create a new Terraform configuration file with the .tf extension.
-Add the Confluent Terraform Provider configuration to your file. This should include your Confluent Cloud API key and secret to provision your resources. Here's the configuration from `provider.tf`:
+Add the Confluent Terraform Provider configuration to your file. This should include your Confluent Cloud API key and secret to provision your resources. We also set up the remote bucket to store the terraform's state in s3. More info on configuring the S3 backend can be found [here](https://developer.hashicorp.com/terraform/language/settings/backends/s3). Below is the configuration from `provider.tf`:
 
 ```terraform
 terraform {
@@ -45,6 +45,12 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 4.0"
     }
+  }
+
+  backend "s3" {
+    bucket         	   = "niyi-tf-backend-non-prod"
+    key                = "state/terraform.tfstate"
+    region         	   = "us-east-1"
   }
 }
 
@@ -61,7 +67,7 @@ provider "aws" {
 
 }
 ```
-The above terraform script specifies the Confluent provider version well as the Microsoft Azure version.
+The above terraform script specifies the Confluent provider version well as the AWS version.
 
 For more information on provisioning Kafka clusters, visit the Terraform provider [documentation](https://registry.terraform.io/providers/confluentinc/confluent/latest/docs).
 
