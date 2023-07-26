@@ -134,7 +134,3 @@ resource "confluent_api_key" "app-manager-kafka-api-key" {
     }
   }
 }
-
-terraform {
-  required_version = ">1.3.0"
-}
