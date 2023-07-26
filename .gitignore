@@ -4,3 +4,4 @@ non-prod/.terraform/
 non-prod/public/.terraform
 non-prod/privatelink/.terraform
 non-prod/public/*/.terraform
+non-prod/*/*/.terraform.lock.hcl
