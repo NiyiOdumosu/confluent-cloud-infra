@@ -23,7 +23,7 @@ jobs:
 
       - name: Add ccloud creds to tfvars
         run: |
-          cd non-prod
+          cd non-prod/public/
           echo "confluent_api_key = \"${{ secrets.CONFLUENT_CLOUD_API_KEY }}\" " >> non-prod.tfvars
           echo "confluent_api_secret = \"${{ secrets.CONFLUENT_CLOUD_API_SECRET }}\" " >> non-prod.tfvars
           echo >> non-prod.tfvars
