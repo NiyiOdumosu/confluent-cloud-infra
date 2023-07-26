@@ -50,18 +50,57 @@ resource "confluent_api_key" "producer-api-key" {
 }
 
 
-resource "confluent_kafka_topic" "topic_a" {
-  kafka_cluster {
-    id = confluent_kafka_cluster.dedicated.id
-  }
-  topic_name         = "topic_a"
-  partitions_count   = 3
-  rest_endpoint      = confluent_kafka_cluster.dedicated.rest_endpoint
-  config = {
 
-  }
-  credentials {
-    key    = confluent_api_key.producer-api-key.id
-    secret = confluent_api_key.producer-api-key.secret
-  }
+
+resource "confluent_service_account" "app-consumer" {
+  display_name = "app-consumer-service-account"
+  description  = "Service Account for app consumers"
 }
+
+resource "confluent_role_binding" "developer-read" {
+  principal   = "User:${confluent_service_account.app-consumer.id}"
+  role_name   = "DeveloperRead"
+  crn_pattern = "${confluent_kafka_cluster.dedicated.rbac_crn}/kafka=${confluent_kafka_cluster.dedicated.id}/topic=*"
+}
+
+//resource "confluent_kafka_acl" "app_consumer_acl" {
+//  kafka_cluster {
+//    id = confluent_kafka_cluster.dedicated.id
+//  }
+//  resource_type = "TOPIC"
+//  resource_name = "*"
+//  pattern_type  = "LITERAL"
+//  principal     = "User:${confluent_service_account.app-consumer.id}"
+//  host          = "*"
+//  operation     = "READ"
+//  permission    = "ALLOW"
+//  rest_endpoint = confluent_kafka_cluster.dedicated.rest_endpoint
+//  credentials {
+//    key = confluent_api_key.app-manager-kafka-api-key.id
+//    secret = confluent_api_key.app-manager-kafka-api-key.secret
+//  }
+//}
+//
+//
+//resource "confluent_api_key" "consumer-api-key" {
+//  display_name = "consumer-api-key"
+//  description  = "Kafka API Key that is owned by 'consumer' service account"
+//  owner {
+//    id          = confluent_service_account.app-consumer.id
+//    api_version = confluent_service_account.app-consumer.api_version
+//    kind        = confluent_service_account.app-consumer.kind
+//  }
+//
+//  managed_resource {
+//    id          = confluent_kafka_cluster.dedicated.id
+//    api_version = confluent_kafka_cluster.dedicated.api_version
+//    kind        = confluent_kafka_cluster.dedicated.kind
+//
+//    environment {
+//      id = data.confluent_environment.env.id
+//    }
+//  }
+//  depends_on = [
+//    confluent_role_binding.developer-read
+//  ]
+//}
