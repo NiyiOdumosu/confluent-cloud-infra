@@ -1,0 +1,35 @@
+name: "Terraform Plan"
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    name: Create a plan for the terraform configuration
+    env:
+      GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Add ccloud creds to tfvars
+        run: |
+          cd non-prod
+          echo "confluent_api_key = \"${{ secrets.CONFLUENT_CLOUD_API_KEY }}\" " >> non-prod.tfvars
+          echo "confluent_api_secret = \"${{ secrets.CONFLUENT_CLOUD_API_SECRET }}\" " >> non-prod.tfvars
+          echo >> non-prod.tfvars
+
+      - name: terraform apply
+        uses: dflook/terraform-apply@v1
+        with:
+          path: non-prod
+          var_file: non-prod/non-prod.tfvars
