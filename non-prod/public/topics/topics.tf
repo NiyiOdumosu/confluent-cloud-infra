@@ -1,3 +1,10 @@
+module "kafka" {
+  source = "../kafka/"
+  cluster_name = var.cluster_name
+  region = var.region
+  env_name = var.env_name
+
+}
 
  resource "confluent_kafka_topic" "topic_a" {
    kafka_cluster {

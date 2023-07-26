@@ -1,4 +1,4 @@
-name: "Terraform Plan"
+name: "Terraform Apply"
 
 on:
   push:
@@ -42,3 +42,17 @@ jobs:
         with:
           path: non-prod/public/kafka
           var_file: non-prod/public/non-prod.tfvars
+
+#      - name: terraform plan service accounts
+#        uses: dflook/terraform-plan@v1
+#        with:
+#          path: non-prod/public/service-accounts
+#          var_file: non-prod/public/non-prod.tfvars
+#
+
+#
+#      - name: terraform plan ksql
+#        uses: dflook/terraform-plan@v1
+#        with:
+#          path: non-prod/public/ksql
+#          var_file: non-prod/public/non-prod.tfvars
