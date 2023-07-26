@@ -1,3 +1,6 @@
 .idea/
-non-prod/terraform.tfvars
+non-prod/public/terraform.tfvars
 non-prod/.terraform/
+non-prod/public/.terraform
+
+

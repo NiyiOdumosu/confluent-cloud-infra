@@ -1,3 +1,0 @@
-topic_a
-topic_b
-topic_c
