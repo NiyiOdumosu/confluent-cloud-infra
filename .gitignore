@@ -2,5 +2,5 @@
 non-prod/public/terraform.tfvars
 non-prod/.terraform/
 non-prod/public/.terraform
-
-
+non-prod/privatelink/.terraform
+non-prod/public/*/.terraform

@@ -20,5 +20,4 @@ while read topic; do
 done < $topics
 # Write the output to a proper terraform file.  `cluster.tf` is a proper
 # terraform file and can be used with `terraform apply`
-rm topic.tf
 echo $topics_output >> "topics.tf"

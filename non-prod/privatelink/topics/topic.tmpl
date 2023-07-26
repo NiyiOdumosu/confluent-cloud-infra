@@ -1,10 +1,10 @@
  resource "confluent_kafka_topic" "REPLACE_ME" {
    kafka_cluster {
-     id = confluent_kafka_cluster.dedicated.id
+     id = confluent_kafka_cluster.basic.id
    }
    topic_name         = "REPLACE_ME"
    partitions_count   = 3
-   rest_endpoint      = confluent_kafka_cluster.dedicated.rest_endpoint
+   rest_endpoint      = confluent_kafka_cluster.basic.rest_endpoint
    config = {
 
    }
