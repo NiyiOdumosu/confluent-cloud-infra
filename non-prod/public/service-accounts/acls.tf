@@ -1,3 +1,12 @@
+module "kafka" {
+  source = "../kafka"
+  cluster_name = var.cluster_name
+  region = var.region
+  env_name = var.env_name
+
+}
+
+
 resource "confluent_service_account" "app-producer" {
   display_name = "app-producer-service-account"
   description  = "Service Account for app producer"

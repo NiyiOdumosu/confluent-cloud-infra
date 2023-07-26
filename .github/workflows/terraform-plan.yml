@@ -20,15 +20,38 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Add ccloud creds to tfvars
+      - name: Create terraform vars file
         run: |
           cd non-prod/public/
+          echo "non_prod_env_crn = \"${{ secrets.ENV_CRN }}\" " >> non-prod.tfvars
+          echo "env_name = \"${{ secrets.ENV_NAME }}\" " >> non-prod.tfvars
+          echo "purpose = \"${{ secrets.PURPOSE }}\" " >> non-prod.tfvars
+          echo "cluster_name = \"${{ secrets.CLUSTER_NAME }}\" " >> non-prod.tfvars
+          echo "ksql_cluster = \"${{ secrets.KSQL_CLUSTER }}\" " >> non-prod.tfvars
+          echo "ksql_app_id = \"${{ secrets.KSQL_APP_ID }}\" " >> non-prod.tfvars
+          echo "owner_email = \"${{ secrets.OWNER_EMAIL }}\" " >> non-prod.tfvars
+          echo "region = \"${{ secrets.REGION }}\" " >> non-prod.tfvars
+          echo "resource_name = \"${{ secrets.RESOURCE_NAME }}\" " >> non-prod.tfvars
           echo "confluent_api_key = \"${{ secrets.CONFLUENT_CLOUD_API_KEY }}\" " >> non-prod.tfvars
           echo "confluent_api_secret = \"${{ secrets.CONFLUENT_CLOUD_API_SECRET }}\" " >> non-prod.tfvars
           echo >> non-prod.tfvars
 
-      - name: terraform plan
+      - name: terraform plan cluster
         uses: dflook/terraform-plan@v1
         with:
           path: non-prod/public/kafka
           var_file: non-prod/public/non-prod.tfvars
+
+#      - name: terraform plan service accounts
+#        uses: dflook/terraform-plan@v1
+#        with:
+#          path: non-prod/public/service-accounts
+#          var_file: non-prod/public/non-prod.tfvars
+#
+
+#
+#      - name: terraform plan ksql
+#        uses: dflook/terraform-plan@v1
+#        with:
+#          path: non-prod/public/ksql
+#          var_file: non-prod/public/non-prod.tfvars
