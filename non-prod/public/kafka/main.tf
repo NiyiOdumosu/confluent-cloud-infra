@@ -48,3 +48,20 @@ resource "confluent_api_key" "producer-api-key" {
     confluent_role_binding.developer-write
   ]
 }
+
+
+resource "confluent_kafka_topic" "topic_a" {
+  kafka_cluster {
+    id = confluent_kafka_cluster.dedicated.id
+  }
+  topic_name         = "topic_a"
+  partitions_count   = 3
+  rest_endpoint      = confluent_kafka_cluster.dedicated.rest_endpoint
+  config = {
+
+  }
+  credentials {
+    key    = confluent_api_key.producer-api-key.id
+    secret = confluent_api_key.producer-api-key.secret
+  }
+}
