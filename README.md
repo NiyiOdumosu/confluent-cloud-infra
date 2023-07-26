@@ -25,7 +25,31 @@ If everything looks good, run `terraform apply` to create or update your resourc
 That's it! You've now successfully provisioned Confluent resources using Terraform.
 
 
-## Provisioning Confluent Resources
+## Run Confluent Cloud Infra with Github Actions
+
+Add a github workflow file to the .github/ directory. To use the terraform-plan or terraform-apply actions, add the action to your workflow yaml file. Please remember to generate a GITHUB Token from your account and add it as `WORKFLOW_TOKEN` to your pipeline file.
+
+  ```
+  jobs:
+  plan:
+  runs-on: ubuntu-latest
+  name: Create a plan for the terraform configuration
+  env:
+  GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+  steps:
+  - name: Checkout
+  uses: actions/checkout@v2
+
+  - name: Configure AWS Credentials
+  uses: aws-actions/configure-aws-credentials@v1
+  with:
+  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  aws-region: us-east-1
+  ```
+
+
+  ## Provisioning Confluent Resources
 You can create resources such as Kafka clusters, schema registry clusters, Kafka topics, service accounts, and KSQL clusters using the confluent_kafka_cluster, confluent_schema_registry_cluster, confluent_kafka_topic, confluent_service_account, and confluent_ksql_cluster resources respectively. Below are snippets of the configurations for each cluster:
 
 ### Provider
