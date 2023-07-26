@@ -1,4 +1,8 @@
 #!/bin/bash
+# For more information on this script please visit https://docs.confluent.io/cloud/current/networking/ccloud-console-access.html#configure-a-proxy
+
+# First install nginx, java and confluent platform on the ec2 instance
+
 sudo apt update -y &&
 sudo apt install -y nginx
 sudo apt install -y default-jdk
