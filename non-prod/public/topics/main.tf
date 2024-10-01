@@ -17,7 +17,7 @@
    kafka_cluster {
      id = confluent_kafka_cluster.basic.id
    }
-   topic_name         = "topic_a"
+   topic_name         = "topic_b"
    partitions_count   = 3
    rest_endpoint      = confluent_kafka_cluster.basic.rest_endpoint
    config = {
@@ -32,7 +32,7 @@
    kafka_cluster {
      id = confluent_kafka_cluster.basic.id
    }
-   topic_name         = "topic_a"
+   topic_name         = "topic_c"
    partitions_count   = 3
    rest_endpoint      = confluent_kafka_cluster.basic.rest_endpoint
    config = {
