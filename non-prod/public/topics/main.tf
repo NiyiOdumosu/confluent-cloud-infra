@@ -27,6 +27,7 @@
      key    = confluent_api_key.producer-api-key.id
      secret = confluent_api_key.producer-api-key.secret
    }
+  } 
 
  resource "confluent_kafka_topic" "topic_c" {
    kafka_cluster {
