@@ -22,11 +22,11 @@ resource "confluent_service_account" "app-producer" {
   description  = "Service Account for app producer"
 }
 
-resource "confluent_role_binding" "developer-write" {
-  principal   = "User:${confluent_service_account.app-producer.id}"
-  role_name   = "DeveloperWrite"
-  crn_pattern = "${confluent_kafka_cluster.basic.rbac_crn}/kafka=${confluent_kafka_cluster.basic.id}/topic=*"
-}
+// resource "confluent_role_binding" "developer-write" {
+//   principal   = "User:${confluent_service_account.app-producer.id}"
+//   role_name   = "DeveloperWrite"
+//   crn_pattern = "${confluent_kafka_cluster.basic.rbac_crn}/kafka=${confluent_kafka_cluster.basic.id}/topic=*"
+// }
 resource "confluent_api_key" "producer-api-key" {
   display_name = "producer-api-key"
   description  = "Kafka API Key that is owned by 'producer' service account"
@@ -45,8 +45,8 @@ resource "confluent_api_key" "producer-api-key" {
       id = data.confluent_environment.env.id
     }
   }
-  depends_on = [
-    confluent_role_binding.developer-write
-  ]
+//   depends_on = [
+//     confluent_role_binding.developer-write
+//   ]
 }
 
