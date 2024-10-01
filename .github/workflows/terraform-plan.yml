@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Create a plan for the terraform configuration
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -37,7 +37,7 @@ jobs:
           echo >> non-prod.tfvars
 
       - name: terraform plan cluster
-        uses: dflook/terraform-plan@v1
+        uses: dflook/terraform-plan@v1.44.0
         with:
           path: non-prod/public/kafka
           var_file: non-prod/public/non-prod.tfvars
