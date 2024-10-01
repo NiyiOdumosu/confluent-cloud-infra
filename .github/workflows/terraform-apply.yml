@@ -51,8 +51,8 @@ jobs:
 
 
 
-    #  - name: terraform apply topics
-    #    uses: dflook/terraform-apply@v1.44.0
-    #    with:
-    #      path: non-prod/public/topics
-    #      var_file: non-prod/public/non-prod.tfvars
+     - name: terraform apply topics
+       uses: dflook/terraform-apply@v1.44.0
+       with:
+         path: non-prod/public/topics
+         var_file: non-prod/public/non-prod.tfvars
