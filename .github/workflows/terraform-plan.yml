@@ -37,7 +37,7 @@ jobs:
           echo >> non-prod.tfvars
 
       - name: terraform plan cluster
-        uses: dflook/terraform-plan@v1.44.0
+        uses: dflook/terraform-plan@v1
         with:
           path: non-prod/public/kafka
           var_file: non-prod/public/non-prod.tfvars
