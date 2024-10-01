@@ -2,7 +2,7 @@ terraform {
   required_providers {
     confluent = {
       source = "confluentinc/confluent"
-      version = "1.40.0"
+      version = "2.3.0"
     }
     aws = {
       source  = "hashicorp/aws"
@@ -11,8 +11,8 @@ terraform {
   }
 
   backend "s3" {
-    bucket         	   = "niyi-tf-backend-non-prod"
-    key                = "serviceaccounts/terraform.tfstate"
+    bucket         	   = "confluent-cloud-infra"
+    key                = "service-accounts/terraform.tfstate"
     region         	   = "us-east-1"
   }
 }

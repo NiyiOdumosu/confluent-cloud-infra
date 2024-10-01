@@ -1,4 +1,3 @@
-
 data "confluent_schema_registry_region" "non_prod" {
   cloud   = "AWS"
   region  = "us-east-2"
