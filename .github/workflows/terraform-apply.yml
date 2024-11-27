@@ -43,16 +43,16 @@ jobs:
           path: non-prod/public/kafka
           var_file: non-prod/public/non-prod.tfvars
 
-    #  - name: terraform apply service accounts
-    #    uses: dflook/terraform-apply@v1.44.0
-    #    with:
-    #      path: non-prod/public/service-accounts
-    #      var_file: non-prod/public/non-prod.tfvars
+     - name: terraform apply service accounts
+       uses: dflook/terraform-apply@v1.44.0
+       with:
+         path: non-prod/public/service-accounts
+         var_file: non-prod/public/non-prod.tfvars
 
 
 
-    #  - name: terraform apply topics
-    #    uses: dflook/terraform-apply@v1.44.0
-    #    with:
-    #      path: non-prod/public/topics
-    #      var_file: non-prod/public/non-prod.tfvars
+     - name: terraform apply topics
+       uses: dflook/terraform-apply@v1.44.0
+       with:
+         path: non-prod/public/topics
+         var_file: non-prod/public/non-prod.tfvars

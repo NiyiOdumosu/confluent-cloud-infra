@@ -53,3 +53,14 @@ variable "non_prod_env_crn" {
   description = "NON PROD Environment CRN"
   type        = string
 }
+
+
+variable "kafka_id" {
+  description = "Kafka cluster id"
+  type        = string
+}
+
+variable "kafka_rest_endpoint" {
+  description = "Kafka cluster rest endpoint"
+  type        = string
+}
