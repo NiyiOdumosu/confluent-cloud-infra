@@ -19,8 +19,10 @@ terraform {
 
 provider "confluent" {
   # Configuration options
-  cloud_api_key    = var.confluent_api_key
-  cloud_api_secret = var.confluent_api_secret
+  cloud_api_key       = var.confluent_api_key
+  cloud_api_secret    = var.confluent_api_secret
+  kafka_id            = confluent_kafka_cluster.basic.id
+  kafka_rest_endpoint = confluent_kafka_cluster.basic.rest_endpoint
 }
 
 provider "aws" {

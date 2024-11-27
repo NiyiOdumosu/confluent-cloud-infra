@@ -34,6 +34,10 @@ jobs:
           echo "resource_name = \"${{ secrets.RESOURCE_NAME }}\" " >> non-prod.tfvars
           echo "confluent_api_key = \"${{ secrets.CONFLUENT_CLOUD_API_KEY }}\" " >> non-prod.tfvars
           echo "confluent_api_secret = \"${{ secrets.CONFLUENT_CLOUD_API_SECRET }}\" " >> non-prod.tfvars
+          echo "kafka_id = \"${{ secrets.KAFKA_ID }}\" " >> non-prod.tfvars
+          echo "kafka_rest_endpoint = \"${{ secrets.KAFKA_REST_ENDPOINT }}\" " >> non-prod.tfvars
+          # echo "kafka_api_key = \"${{ secrets.KAFKA_API_KEY }}\" " >> non-prod.tfvars
+          # echo "kafka_api_secret = \"${{ secrets.KAFKA_API_SECRET }}\" " >> non-prod.tfvars
           echo >> non-prod.tfvars
 
       - name: terraform plan cluster
@@ -42,14 +46,14 @@ jobs:
           path: non-prod/public/kafka
           var_file: non-prod/public/non-prod.tfvars
 
-      # - name: terraform plan service accounts
-      #   uses: dflook/terraform-plan@v1.44.0
-      #   with:
-      #     path: non-prod/public/service-accounts
-      #     var_file: non-prod/public/non-prod.tfvars
+      - name: terraform plan service accounts
+        uses: dflook/terraform-plan@v1.44.0
+        with:
+          path: non-prod/public/service-accounts
+          var_file: non-prod/public/non-prod.tfvars
 
-      # - name: terraform plan topics
-      #   uses: dflook/terraform-plan@v1.44.0
-      #   with:
-      #     path: non-prod/public/topics
-      #     var_file: non-prod/public/non-prod.tfvars
+      - name: terraform plan topics
+        uses: dflook/terraform-plan@v1.44.0
+        with:
+          path: non-prod/public/topics
+          var_file: non-prod/public/non-prod.tfvars
