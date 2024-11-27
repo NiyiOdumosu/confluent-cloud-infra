@@ -50,7 +50,6 @@ jobs:
          var_file: non-prod/public/non-prod.tfvars
 
 
-
      - name: terraform apply topics
        uses: dflook/terraform-apply@v1.44.0
        with:
